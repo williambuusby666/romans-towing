@@ -463,3 +463,89 @@ footer {
 .phone-fallback a:hover {
     text-decoration: underline;
 }
+/* About Page Specific Layout Grid Rules */
+.about-page-content {
+    padding: 80px 0 100px 0;
+    background: radial-gradient(circle at top left, rgba(22, 24, 29, 0.4) 0%, #0b0c10 100%);
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-header h1 {
+    font-size: 42px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+
+.about-header p {
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 60px;
+}
+
+.about-card {
+    background-color: #101115;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card-image-wrap {
+    width: 100%;
+    height: 220px;
+    background-color: #16181d;
+    overflow: hidden;
+}
+
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover .card-image-wrap img {
+    transform: scale(1.04);
+}
+
+.card-text {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.card-text h2 {
+    color: #39ff14; /* Lime accent for section card subheaders */
+    font-size: 22px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.card-text p {
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.about-cta-footer {
+    text-align: center;
+}
+
+.active-nav {
+    color: #39ff14 !important;
+}
