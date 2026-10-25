@@ -28,13 +28,17 @@
                 <p>Please supply authorization metadata, targeted vehicle attributes, and photo verification below to submit a priority vehicle removal profile.</p>
             </div>
 
-            <!-- Fixed Operational Form Tag with enctype to allow image processing -->
-            <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" class="master-intake-form">
+            <!-- Handled cleanly through free text routing parameters -->
+            <form action="https://web3forms.com" method="POST" class="master-intake-form" id="impoundForm">
                 
                 <!-- Core Web3Forms Routing Setup -->
                 <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
                 <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
                 <input type="hidden" name="redirect" value="https://romansaztowing.com">
+
+                <!-- Hidden inputs that will hold the text strings of the photos -->
+                <input type="hidden" name="Violation_Photo_1_Data" id="photo1Data">
+                <input type="hidden" name="Violation_Photo_2_Data" id="photo2Data">
 
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
@@ -91,11 +95,12 @@
                     <div class="form-group-row">
                         <div class="input-group">
                             <label>Violation Photo 1 (Required)</label>
-                            <input type="file" name="Violation_Photo_1" accept="image/*" class="file-input-field" required>
+                            <!-- Notice we do NOT use name="" here so the raw file is never sent to Web3Forms directly -->
+                            <input type="file" id="filePicker1" accept="image/*" class="file-input-field" required>
                         </div>
                         <div class="input-group">
                             <label>Violation Photo 2 (Optional)</label>
-                            <input type="file" name="Violation_Photo_2" accept="image/*" class="file-input-field">
+                            <input type="file" id="filePicker2" accept="image/*" class="file-input-field">
                         </div>
                     </div>
                 </div>
@@ -114,8 +119,25 @@
         </div>
     </footer>
 
-</body>
-</html>
+    <!-- Smart Free-Tier Photo Encoding Script -->
+    <script>
+        const processImage = (fileInput, hiddenInputId) => {
+            fileInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Converts the raw image to an optimized text string
+                        document.getElementById(hiddenInputId).value = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        };
+
+        processImage(document.getElementById('filePicker1'), 'photo1Data');
+        processImage(document.getElementById('filePicker2'), 'photo2Data');
+    </script>
 
 </body>
 </html>
