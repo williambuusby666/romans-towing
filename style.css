@@ -586,3 +586,28 @@ footer {
     margin-top: 0;
     height: 100%;
 }
+/* File Upload Form Elements Custom Styles */
+.file-input-field {
+    padding: 12px !important;
+    background-color: #16181d;
+    border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+    cursor: pointer;
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.file-input-field::file-selector-button {
+    background-color: #39ff14;
+    color: #000000;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.file-input-field::file-selector-button:hover {
+    background-color: #2ee60f;
+}
