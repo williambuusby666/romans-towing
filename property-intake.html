@@ -28,35 +28,35 @@
                 <p>Please supply authorization metadata, targeted vehicle attributes, and photo verification below to submit a priority vehicle removal profile.</p>
             </div>
 
-            <!-- Operational Web3Forms Action End-Point -->
-            <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Submit Form</button>
-</form>
+            <!-- Fixed Operational Form Tag with enctype to allow image processing -->
+            <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" class="master-intake-form">
+                
+                <!-- Core Web3Forms Routing Setup -->
+                <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
+                <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
+                <input type="hidden" name="redirect" value="https://romansaztowing.com">
+
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
                     <h2>1. Authorized Agent Verification</h2>
                     <div class="form-group-row">
                         <div class="input-group">
-                            <label>Property/Business Name</label>
-                            <input type="text" name="property_name" placeholder="e.g., Oakridge Apartments" required>
+                            <label>Property / Business Name</label>
+                            <input type="text" name="Property_Name" placeholder="e.g., Oakridge Apartments" required>
                         </div>
                         <div class="input-group">
                             <label>Authorized Agent Full Name</label>
-                            <input type="text" name="agent_name" placeholder="Property Manager, Security, Owner" required>
+                            <input type="text" name="Agent_Name" placeholder="Property Manager, Security, Owner" required>
                         </div>
                     </div>
                     <div class="form-group-row" style="margin-top: 15px;">
                         <div class="input-group">
                             <label>Agent Contact Phone Number</label>
-                            <input type="tel" name="agent_phone" placeholder="(520) 000-0000" required>
+                            <input type="tel" name="Agent_Phone" placeholder="(520) 000-0000" required>
                         </div>
                         <div class="input-group">
                             <label>Property Address / Violation Zone</label>
-                            <input type="text" name="property_address" placeholder="Exact address where vehicle is parked" required>
+                            <input type="text" name="Property_Address" placeholder="Exact address where vehicle is parked" required>
                         </div>
                     </div>
                 </div>
@@ -67,20 +67,20 @@
                     <div class="form-group-row-three">
                         <div class="input-group">
                             <label>License Plate</label>
-                            <input type="text" name="target_plate" placeholder="e.g., ABC1234 or No Plate">
+                            <input type="text" name="Vehicle_License_Plate" placeholder="e.g., ABC1234 or No Plate">
                         </div>
                         <div class="input-group">
                             <label>Vehicle Make</label>
-                            <input type="text" name="target_make" placeholder="e.g., Honda, Dodge" required>
+                            <input type="text" name="Vehicle_Make" placeholder="e.g., Honda, Dodge" required>
                         </div>
                         <div class="input-group">
-                            <label>Vehicle Model / Color</label>
-                            <input type="text" name="target_model_color" placeholder="e.g., Black Ram 1500" required>
+                            <label>Vehicle Model & Color</label>
+                            <input type="text" name="Vehicle_Model_and_Color" placeholder="e.g., Black Ram 1500" required>
                         </div>
                     </div>
                     <div class="input-group" style="margin-top: 15px;">
                         <label>Violation Reason & Specific Location on Property</label>
-                        <textarea name="violation_notes" placeholder="e.g., Blocked fire lane, abandoned for 72 hours, occupying space #44 without pass..." rows="4" required></textarea>
+                        <textarea name="Violation_Reason_and_Details" placeholder="e.g., Blocked fire lane, abandoned for 72 hours, occupying space #44 without pass..." rows="4" required></textarea>
                     </div>
                 </div>
 
@@ -91,11 +91,11 @@
                     <div class="form-group-row">
                         <div class="input-group">
                             <label>Violation Photo 1 (Required)</label>
-                            <input type="file" name="violation_photo_1" accept="image/*" class="file-input-field" required>
+                            <input type="file" name="Violation_Photo_1" accept="image/*" class="file-input-field" required>
                         </div>
                         <div class="input-group">
                             <label>Violation Photo 2 (Optional)</label>
-                            <input type="file" name="violation_photo_2" accept="image/*" class="file-input-field">
+                            <input type="file" name="Violation_Photo_2" accept="image/*" class="file-input-field">
                         </div>
                     </div>
                 </div>
@@ -113,6 +113,9 @@
             <p>&copy; 2026 Romans Towing LLC. Authorized Impound Processing.</p>
         </div>
     </footer>
+
+</body>
+</html>
 
 </body>
 </html>
