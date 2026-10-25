@@ -29,16 +29,13 @@
             </div>
 
             <!-- Operational Web3Forms Action End-Point -->
-            <form action="https://web3forms.com/" method="POST" enctype="multipart/form-data" class="master-intake-form">
-                
-                <!-- Live Web3Forms Access Key Integration -->
-                <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
-
-                <!-- Core Tracking Metadata and Custom Domain Redirect Routing -->
-                <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
-                <input type="hidden" name="redirect" value="https://romansaztowing.com/success">
-                <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
-
+            <form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
+  <input type="text" name="name" required>
+  <input type="email" name="email" required>
+  <textarea name="message" required></textarea>
+  <button type="submit">Submit Form</button>
+</form>
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
                     <h2>1. Authorized Agent Verification</h2>
