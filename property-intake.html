@@ -29,15 +29,18 @@
             </div>
 
             <!-- Operational Web3Forms Action End-Point -->
-            <form action="https://web3forms.com" method="POST" enctype="multipart/form-data" class="master-intake-form">
-                
-                <!-- REQUIRED: Swap the value below with your actual alphanumeric key string -->
-                <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
+            <!-- Locate this section in property-intake.html and replace it exactly -->
+<form action="https://web3forms.com" method="POST" enctype="multipart/form-data" class="master-intake-form">
+    
+    <!-- Make sure your real key is pasted right here -->
+    <input type="hidden" name="access_key" value="PASTE_YOUR_REAL_WEB3FORMS_ACCESS_KEY_HERE">
 
-                <!-- REQUIRED CONFIGURATION: Custom tracking metadata tags -->
-                <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
-                <input type="hidden" name="redirect" value="https://romanstowing.com/success.html">
-                <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
+    <!-- Custom tracking metadata tags -->
+    <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
+    
+    <!-- We removed the hardcoded link to prevent Cloudflare 405 Method Not Allowed blocks entirely -->
+    <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
+
 
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
