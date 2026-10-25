@@ -28,11 +28,16 @@
                 <p>Please supply authorization metadata, targeted vehicle attributes, and photo verification below to submit a priority vehicle removal profile.</p>
             </div>
 
-            <!-- ENCTYPE added to allow secure photo submissions -->
+            <!-- Operational Web3Forms Action End-Point -->
             <form action="https://web3forms.com" method="POST" enctype="multipart/form-data" class="master-intake-form">
                 
-                <!-- Web3Forms Access Key Option (If using Web3Forms, swap your key here) -->
+                <!-- REQUIRED: Swap the value below with your actual alphanumeric key string -->
                 <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
+
+                <!-- REQUIRED CONFIGURATION: Custom tracking metadata tags -->
+                <input type="hidden" name="subject" value="🚨 NEW Private Property Removal Request">
+                <input type="hidden" name="redirect" value="https://pages.dev">
+                <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
 
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
