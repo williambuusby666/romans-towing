@@ -20,17 +20,20 @@
         </div>
     </header>
 
-    <!-- Intake section -->
+    <!-- Intake Section -->
     <section class="intake-section">
         <div class="container unique-form-container">
             <div class="form-header">
                 <h1>Property Removal Authorization Form</h1>
-                <p>Please supply authorization metadata and targeted vehicle attributes below to submit a priority vehicle removal profile.</p>
+                <p>Please supply authorization metadata, targeted vehicle attributes, and photo verification below to submit a priority vehicle removal profile.</p>
             </div>
 
-            <!-- Replace '#' with your actual Formspree handler endpoint URL later -->
-            <form action="#" method="POST" class="master-intake-form">
+            <!-- ENCTYPE added to allow secure photo submissions -->
+            <form action="https://web3forms.com" method="POST" enctype="multipart/form-data" class="master-intake-form">
                 
+                <!-- Web3Forms Access Key Option (If using Web3Forms, swap your key here) -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
                 <!-- Section 1: Authorization metrics -->
                 <div class="form-block">
                     <h2>1. Authorized Agent Verification</h2>
@@ -76,6 +79,22 @@
                     <div class="input-group" style="margin-top: 15px;">
                         <label>Violation Reason & Specific Location on Property</label>
                         <textarea name="violation_notes" placeholder="e.g., Blocked fire lane, abandoned for 72 hours, occupying space #44 without pass..." rows="4" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 3: Photo Upload Integration -->
+                <div class="form-block">
+                    <h2>3. Photographic Documentation</h2>
+                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">Please take or attach photos clearly showing the vehicle location, license plate, and violation context for liability records.</p>
+                    <div class="form-group-row">
+                        <div class="input-group">
+                            <label>Violation Photo 1 (Required)</label>
+                            <input type="file" name="violation_photo_1" accept="image/*" class="file-input-field" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Violation Photo 2 (Optional)</label>
+                            <input type="file" name="violation_photo_2" accept="image/*" class="file-input-field">
+                        </div>
                     </div>
                 </div>
 
