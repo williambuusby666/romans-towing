@@ -4,98 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Intake Form | Romans Towing LLC</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    Romans Towing
+    <!-- Header Navigation -->
+    <header>
+        <div class="container navbar">
+            <div class="logo"><a href="index.html" style="text-decoration:none; color:white;">Romans<span>Towing</span></a></div>
+            <nav>
+                <a href="index.html">Back to Home</a>
+                <a href="tel:5202682564" class="btn-nav">Call Dispatch: (520) 268-2564</a>
+            </nav>
+        </div>
+    </header>
 
-    About Services Property Enforcement Call Now: (520) 268-2564
+    <!-- Intake Section -->
+    <section class="intake-section">
+        <div class="container unique-form-container">
+            <div class="form-header">
+                <h1>Service Intake Form</h1>
+                <p>Please provide your accurate location details and vehicle diagnostics below so our certified operator arrives with the correct tools.</p>
+            </div>
 
-    Management Solutions
+            <!-- Replace '#' with your actual form submit handling endpoint URL later -->
+            <form action="https://formspree.io/f/xnppparp" method="POST" class="master-intake-form">
+                
+                <!-- Section: Contact -->
+                <div class="form-block">
+                    <h2>1. Contact & Owner Information</h2>
+                    <div class="form-group-row">
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" name="customer_name" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Best Contact Number</label>
+                            <input type="tel" name="customer_phone" placeholder="(520) 000-0000" required>
+                        </div>
+                    </div>
+                </div>
 
-    ## Private Property Parking Solutions
+                <!-- Section: Logistics Mapping -->
+                <div class="form-block">
+                    <h2>2. Location Matrix</h2>
+                    <div class="input-group">
+                        <label>Current Breakdown Location (Address, Landmark, or Mile Marker)</label>
+                        <input type="text" name="pickup_location" placeholder="e.g., I-10 Westbound Mile Marker 236 or address" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Dropoff Destination / Repair Shop Address</label>
+                        <input type="text" name="dropoff_location" placeholder="Where are we taking the vehicle?" required>
+                    </div>
+                </div>
 
-    Keep your commercial plazas, residential complexes, or private lots clear of unauthorized or abandoned vehicles. Romans Towing LLC offers zero-cost enforcement structures for property managers.
+                <!-- Section: Vehicle Framework -->
+                <div class="form-block">
+                    <h2>3. Vehicle Attributes</h2>
+                    <div class="form-group-row-three">
+                        <div class="input-group">
+                            <label>Year</label>
+                            <input type="number" name="vehicle_year" placeholder="2018" min="1900" max="2028" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Make</label>
+                            <input type="text" name="vehicle_make" placeholder="Ford, Toyota" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Model</label>
+                            <input type="text" name="vehicle_model" placeholder="F-150, Camry" required>
+                        </div>
+                    </div>
+                    <div class="form-group-row" style="margin-top: 15px;">
+                        <div class="input-group">
+                            <label>Vehicle Color</label>
+                            <input type="text" name="vehicle_color" placeholder="Silver, Black, Blue" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Drive Type</label>
+                            <select name="vehicle_drive_type" required class="select-field">
+                                <option value="" disabled selected>Select Drive Type</option>
+                                <option value="fwd">Front-Wheel Drive (FWD)</option>
+                                <option value="rwd">Rear-Wheel Drive (RWD)</option>
+                                <option value="awd">All-Wheel Drive (AWD / 4WD)</option>
+                                <option value="motorcycle">Motorcycle</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top: 15px;">
+                        <label>Mechanical Notes, Modifications, & Key Location</label>
+                        <textarea name="mechanical_notes" placeholder="Are keys with you? Is the vehicle stuck in park? Are tires missing?" rows="4" required></textarea>
+                    </div>
+                </div>
 
-    What We Offer Property Managers
+                <div class="form-action-row">
+                    <button type="submit" class="btn-primary form-submit-large">Dispatch Operator With My Info</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-    - Compliant, legally protective parking lot signage installation.
-    - Strict background-checked and fully certified tow truck operators.
-    - Photo-documented liability verification prior to hooks.
-    - Priority customer tracking portal configurations.
-
-    Service Scope Apartment Complexes, HOAs, Strip Malls, & Corporate Lots
-
-    Administration Line (520) 268-2564
-
-    Corporate Inquiries Email dispatch@romanstowing.com
-
-    ### Management Inquiry Terminal
-
-    Submit your business profile below to request a service agreement consult, lot assessment, or custom signage deployment details.
-
-    <form action="https://formspree.io/f/xzeeebvv" method="POST">
-
-        Confirmed Pickup Location (Address or Landmarks Description)
-        <br>
-        <input type="text" name="pickup_location" required />
-        <br><br>
-
-        Dropoff Destination / Repair Shop Address
-        <br>
-        <input type="text" name="dropoff_destination" required />
-        <br><br>
-
-        Full Name
-        <br>
-        <input type="text" name="full_name" required />
-        <br><br>
-
-        Best Contact Number
-        <br>
-        <input type="tel" name="contact_number" required />
-        <br><br>
-
-        Year
-        <br>
-        <input type="number" name="vehicle_year" required />
-        <br><br>
-
-        Make
-        <br>
-        <input type="text" name="vehicle_make" required />
-        <br><br>
-
-        Model
-        <br>
-        <input type="text" name="vehicle_model" required />
-        <br><br>
-
-        Vehicle Color
-        <br>
-        <input type="text" name="vehicle_color" required />
-        <br><br>
-
-        Drive Type
-        <br>
-        <select name="drive_type" required>
-            <option value="">Select Drive Type</option>
-            <option value="FWD">Front-Wheel Drive (FWD)</option>
-            <option value="RWD">Rear-Wheel Drive (RWD)</option>
-            <option value="AWD_4WD">All-Wheel Drive (AWD / 4WD)</option>
-            <option value="Motorcycle">Motorcycle</option>
-        </select>
-        <br><br>
-
-        Specific Enforcement Requirements / Message
-        <br>
-        <textarea name="mechanical_notes" rows="4"></textarea>
-        <br><br>
-
-        <button type="submit">Request Lot Assessment Setup</button>
-    </form>
-
-    © 2026 Romans Towing LLC. All rights reserved. Professional Fleet Parking Enforcement Solutions.
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Romans Towing LLC. Certified Operators On Standby 24/7.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
