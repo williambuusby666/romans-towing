@@ -44,7 +44,6 @@
                     <h2>1. Drop Your Location Pin</h2>
                     
                     <div id="mapBox" style="width: 100%; height: 350px; background-color: #16181d; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; overflow: hidden;">
-                        <!-- The interactive map injects here seamlessly -->
                         <iframe id="googleMapIframe" src="https://google.com" style="width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
 
@@ -126,7 +125,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Romans Towing LLC. Certified Operators On Standby 24/7.</p>
+            <p>&copy; 2026 Romans Towing LLC. Certified Operators On Standby.</p>
         </div>
     </footer>
 
@@ -138,7 +137,6 @@
         const lngInput = document.getElementById('gps_lng');
         const uiLocation = document.getElementById('ui_location');
 
-        // Defaults directly to your base operations location context in Marana, AZ
         let currentLat = 32.4363;
         let currentLng = -111.2224;
 
@@ -149,14 +147,11 @@
                     currentLat = position.coords.latitude;
                     currentLng = position.coords.longitude;
 
-                    // Sync parameters inside hidden values passed to Formspree
                     latInput.value = currentLat;
                     lngInput.value = currentLng;
 
-                    // Instantly shift embedded viewport frame to driver coordinates position
                     mapIframe.src = `https://google.com{currentLat},${currentLng}&z=16&output=embed`;
                     
-                    // Input placeholder hint layout update
                     uiLocation.value = `Stranded near GPS coordinates: ${currentLat.toFixed(5)}, ${currentLng.toFixed(5)}`;
                     geoBtn.innerText = "📍 GPS Location Sync Success";
                 }, () => {
