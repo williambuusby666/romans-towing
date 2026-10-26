@@ -57,18 +57,17 @@
                 </div>
             </div>
             
-            <!-- Right Panel: Web3Forms Commercial Terminal (Pure Text / No Files) -->
+            <!-- Right Panel: Live Formspree Commercial Terminal -->
             <div class="contact-form">
                 <h3>Management Inquiry Terminal</h3>
                 <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Submit your business profile below to request a service agreement consult, lot assessment, or custom signage deployment details.</p>
                 
-                <form action="https://web3forms.com" method="POST">
+                <!-- Updated form action linked directly to your Formspree endpoint -->
+                <form action="https://formspree.io/f/xzeeebvv" method="POST">
                     
-                    <!-- Verified Functional Web3Forms Payload Parameters -->
-                    <input type="hidden" name="access_key" value="4c6b43dd-8b50-487f-9f47-b5bf0e72cc14">
-                    <input type="hidden" name="subject" value="💼 NEW Commercial Property Partnership Inquiry">
-                    <input type="hidden" name="redirect" value="https://romansaztowing.com">
-                    <input type="checkbox" name="botcheck" style="display: none;">
+                    <!-- Hidden field to safely define custom success page redirection rules -->
+                    <input type="hidden" name="_next" value="https://romansaztowing.com">
+                    <input type="hidden" name="_subject" value="💼 NEW Commercial Property Partnership Inquiry">
 
                     
                     <div class="form-group-row">
@@ -94,7 +93,7 @@
                         </div>
                     </div>
 
-                    <!-- New Added Row 3: Specific Property Name Assignment Box -->
+                    <!-- Row 3: Specific Property Name Assignment Box -->
                     <div class="input-group">
                         <label>Property Name</label>
                         <input type="text" name="Target_Property_Name" placeholder="e.g., Oakridge Apartments, Sunrise Plaza" required>
