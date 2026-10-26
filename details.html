@@ -4,21 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Intake Form | Romans Towing LLC</title>
-    
-    <!-- Leaflet CSS Stylesheet for Map Infrastructure -->
-    <link rel="stylesheet" href="https://unpkg.com" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    
-    <style>
-        /* Map container frame built to load inline smoothly inside your layout layout */
-        #map {
-            width: 100%;
-            height: 350px;
-            margin: 15px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            z-index: 1;
-        }
-    </style>
 </head>
 <body>
 
@@ -28,50 +13,56 @@
 
     # Service Intake Form
 
-    Click the auto-detect button or drag the marker pin over your exact breakdown zone to alert our driver grid.
-
     <form action="https://formspree.io/f/xzeeebvv" method="POST">
-        <h2>1. Drop Your Location Pin</h2>
 
-        <!-- GPS Activation Interface Trigger Element -->
-        <button type="button" id="geolocate-btn">📍 Auto-Detect My Current GPS Location</button>
+        ## 1. Pickup & Dropoff Details
 
-        <!-- Leaflet Canvas Element -->
-        <div id="map"></div>
-
-        <!-- Hidden input tracking nodes supplying coordinate telemetry data to Formspree variables -->
-        <input type="hidden" id="latitude" name="latitude" />
-        <input type="hidden" id="longitude" name="longitude" />
-
-        <p>Confirmed Pickup Location (Address or Landmarks Description)</p>
+        Confirmed Pickup Location (Address or Landmarks Description)
+        <br>
         <input type="text" name="pickup_location" required />
+        <br><br>
 
-        <p>Dropoff Destination / Repair Shop Address</p>
+        Dropoff Destination / Repair Shop Address
+        <br>
         <input type="text" name="dropoff_destination" required />
+        <br><br>
 
-        <h2>2. Contact & Owner Information</h2>
+        ## 2. Contact & Owner Information
 
-        <p>Full Name</p>
+        Full Name
+        <br>
         <input type="text" name="full_name" required />
+        <br><br>
 
-        <p>Best Contact Number</p>
+        Best Contact Number
+        <br>
         <input type="tel" name="contact_number" required />
+        <br><br>
 
-        <h2>3. Vehicle Attributes</h2>
+        ## 3. Vehicle Attributes
 
-        <p>Year</p>
+        Year
+        <br>
         <input type="number" name="vehicle_year" required />
+        <br><br>
 
-        <p>Make</p>
+        Make
+        <br>
         <input type="text" name="vehicle_make" required />
+        <br><br>
 
-        <p>Model</p>
+        Model
+        <br>
         <input type="text" name="vehicle_model" required />
+        <br><br>
 
-        <p>Vehicle Color</p>
+        Vehicle Color
+        <br>
         <input type="text" name="vehicle_color" required />
+        <br><br>
 
-        <p>Drive Type</p>
+        Drive Type
+        <br>
         <select name="drive_type" required>
             <option value="">Select Drive Type</option>
             <option value="FWD">Front-Wheel Drive (FWD)</option>
@@ -79,87 +70,17 @@
             <option value="AWD_4WD">All-Wheel Drive (AWD / 4WD)</option>
             <option value="Motorcycle">Motorcycle</option>
         </select>
-
-        <p>Mechanical Notes & Key Location</p>
-        <textarea name="mechanical_notes" rows="4"></textarea>
-
         <br><br>
+
+        Mechanical Notes & Key Location
+        <br>
+        <textarea name="mechanical_notes" rows="4"></textarea>
+        <br><br>
+
         <button type="submit">Dispatch Operator With My Info</button>
     </form>
 
     © 2026 Romans Towing LLC. Certified Operators On Standby.
 
-    <!-- Leaflet JS Component Library -->
-    <script src="https://unpkg.com" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <script>
-        // CRITICAL PIN FIX: Force asset configuration targeting unpkg assets explicitly to stop invisible pin faults
-        delete L.Icon.Default.prototype._getIconUrl;
-        L.Icon.Default.mergeOptions({
-            iconRetinaUrl: 'https://unpkg.com',
-            iconUrl: 'https://unpkg.com',
-            shadowUrl: 'https://unpkg.com'
-        });
-
-        // Initialize Map engine target focus centralized near your core (520) area code hub [Tucson / Marana region]
-        var map = L.map('map').setView([32.2226, -110.9747], 11);
-
-        // LIGHT MODE MAP LAYER: Loads traditional OpenStreetMap high-visibility road styling layout maps
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19
-        }).addTo(map);
-
-        var pinMarker = null;
-
-        // Core positioning engine pushing lat/lng data straight to tracking forms
-        function placePin(lat, lng) {
-            if (pinMarker) {
-                pinMarker.setLatLng([lat, lng]);
-            } else {
-                pinMarker = L.marker([lat, lng], { draggable: true }).addTo(map);
-                
-                // Track dragging updates instantly
-                pinMarker.on('dragend', function(event) {
-                    var newPos = event.target.getLatLng();
-                    document.getElementById('latitude').value = newPos.lat.toFixed(6);
-                    document.getElementById('longitude').value = newPos.lng.toFixed(6);
-                });
-            }
-            
-            // Pop coordinate records directly into hidden form data nodes
-            document.getElementById('latitude').value = lat.toFixed(6);
-            document.getElementById('longitude').value = lng.toFixed(6);
-        }
-
-        // Tap interface connector allowing manual pin drops over target map zones
-        map.on('click', function(e) {
-            placePin(e.latlng.lat, e.latlng.lng);
-        });
-
-        // Hardware Browser Geolocation API interface activation rules
-        document.getElementById('geolocate-btn').addEventListener('click', function() {
-            if (!navigator.geolocation) {
-                alert("Location lookup tracking features are unsupported inside this browser.");
-                return;
-            }
-
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var userLat = position.coords.latitude;
-                var userLng = position.coords.longitude;
-
-                map.setView([userLat, userLng], 16);
-                placePin(userLat, userLng);
-                
-            }, function(error) {
-                alert("GPS lock timed out. Simply tap manually on your map breakdown target spot to set your pin marker position.");
-            });
-        });
-
-        // Trigger container dimensions window recalculation routines to clean layout alignments 
-        setTimeout(function() {
-            map.invalidateSize();
-        }, 400);
-    </script>
 </body>
 </html>
