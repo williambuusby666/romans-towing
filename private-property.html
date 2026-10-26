@@ -70,6 +70,7 @@
                     <input type="hidden" name="redirect" value="https://romansaztowing.com">
                     <input type="checkbox" name="botcheck" style="display: none;">
 
+                    
                     <div class="form-group-row">
                         <div class="input-group">
                             <label>Contact Full Name</label>
@@ -81,22 +82,31 @@
                         </div>
                     </div>
 
+                    <!-- Row 2: Company & Contact Email -->
                     <div class="form-group-row">
                         <div class="input-group">
                             <label>Management / Corporate Email</label>
                             <input type="email" name="Manager_Email" placeholder="s.jenkins@company.com" required>
                         </div>
                         <div class="input-group">
-                            <label>Company or HOA Name</label>
+                            <label>Management Company or HOA Name</label>
                             <input type="text" name="Company_Name" placeholder="e.g., Apex Property Management" required>
                         </div>
                     </div>
 
+                    <!-- New Added Row 3: Specific Property Name Assignment Box -->
                     <div class="input-group">
-                        <label>Property Address(es) needing Enforcement Fleet Coverage</label>
+                        <label>Property Name</label>
+                        <input type="text" name="Target_Property_Name" placeholder="e.g., Oakridge Apartments, Sunrise Plaza" required>
+                    </div>
+
+                    <!-- Row 4: Physical Address Matrix -->
+                    <div class="input-group">
+                        <label>Property Address needing Enforcement Fleet Coverage</label>
                         <input type="text" name="Target_Property_Address" placeholder="Enter full address or cross-streets" required>
                     </div>
 
+                    <!-- Row 5: Text Area Details -->
                     <div class="input-group">
                         <label>Specific Enforcement Requirements / Message</label>
                         <textarea name="Partnership_Details" placeholder="Tell us about your property type, estimated parking spaces, and if you require custom tow-away warning signs posted..." rows="4" required></textarea>
