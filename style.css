@@ -611,3 +611,13 @@ footer {
 .file-input-field::file-selector-button:hover {
     background-color: #2ee60f;
 }
+/* Fix for OpenStreetMap layout alignment */
+.leaflet-container {
+    font-family: inherit;
+}
+.leaflet-pane {
+    z-index: 1 !important;
+}
+.leaflet-top, .leaflet-bottom {
+    z-index: 2 !important;
+}
