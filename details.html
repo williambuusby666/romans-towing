@@ -4,170 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Intake Form | Romans Towing LLC</title>
-    <!-- Keep your existing stylesheet link here if you have one, e.g., <link rel="stylesheet" href="style.css"> -->
     
-    <!-- Leaflet CSS for Map Rendering -->
-    <link rel="stylesheet" href="https://unpkg.com" />
+    <!-- Leaflet CSS Stylesheet for Map Infrastructure -->
+    <link rel="stylesheet" href="https://unpkg.com" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     
     <style>
-        /* Ensuring the map container looks clean and fits your layout styling */
+        /* Map container frame built to load inline smoothly inside your layout layout */
         #map {
             width: 100%;
             height: 350px;
-            border-radius: 8px;
             margin: 15px 0;
-            border: 2px solid #333;
-            background-color: #1a1a1a;
-        }
-        .btn-gps {
-            background-color: #e67e22;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        .btn-gps:hover {
-            background-color: #d35400;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .btn-submit {
-            background-color: #27ae60;
-            color: white;
-            font-size: 1.1em;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-        }
-        .btn-submit:hover {
-            background-color: #219653;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <strong>Romans Towing</strong>
-            <a href="index.html">About</a>
-            <a href="services.html">Services</a>
-            <a href="property-contact.html">Property Enforcement</a>
-            <a href="tel:5202682564">Call Now: (520) 268-2564</a>
-        </nav>
-    </header>
+    Romans Towing
 
-    <main style="max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1>Service Intake Form</h1>
-        <p>Click the auto-detect button or drag the marker pin over your exact breakdown zone to alert our driver grid.</p>
+    About Services Property Enforcement Call Now: (520) 268-2564
 
-        <!-- Form linked to your Formspree endpoint -->
-        <form action="https://formspree.io/f/xzeeebvv" method="POST">
-            
-            <h2>1. Drop Your Location Pin</h2>
-            
-            <!-- GPS Auto-Detect Button -->
-            <button type="button" id="geolocate-btn" class="btn-gps">📍 Auto-Detect My Current GPS Location</button>
-            
-            <!-- Leaflet Interactive Map Canvas Element -->
-            <div id="map"></div>
-            
-            <!-- Hidden coordinates inputs to pass latitude and longitude downstream to Formspree -->
-            <input type="hidden" id="latitude" name="latitude" />
-            <input type="hidden" id="longitude" name="longitude" />
+    # Service Intake Form
 
-            <div class="form-group">
-                <label for="pickup_address">Confirmed Pickup Location (Address or Landmarks Description)</label>
-                <input type="text" id="pickup_address" name="pickup_address" required placeholder="e.g. I-10 Eastbound Mile Marker 240 or address" />
-            </div>
+    Click the auto-detect button or drag the marker pin over your exact breakdown zone to alert our driver grid.
 
-            <div class="form-group">
-                <label for="dropoff_address">Dropoff Destination / Repair Shop Address</label>
-                <input type="text" id="dropoff_address" name="dropoff_address" required />
-            </div>
+    <form action="https://formspree.io/f/xzeeebvv" method="POST">
+        <h2>1. Drop Your Location Pin</h2>
 
-            <h2>2. Contact & Owner Information</h2>
-            
-            <div class="form-group">
-                <label for="full_name">Full Name</label>
-                <input type="text" id="full_name" name="full_name" required />
-            </div>
+        <!-- GPS Activation Interface Trigger Element -->
+        <button type="button" id="geolocate-btn">📍 Auto-Detect My Current GPS Location</button>
 
-            <div class="form-group">
-                <label for="phone">Best Contact Number</label>
-                <input type="tel" id="phone" name="phone" required />
-            </div>
+        <!-- Leaflet Canvas Element -->
+        <div id="map"></div>
 
-            <h2>3. Vehicle Attributes</h2>
-            
-            <div class="form-group">
-                <label for="year">Year</label>
-                <input type="number" id="year" name="year" required />
-            </div>
+        <!-- Hidden input tracking nodes supplying coordinate telemetry data to Formspree variables -->
+        <input type="hidden" id="latitude" name="latitude" />
+        <input type="hidden" id="longitude" name="longitude" />
 
-            <div class="form-group">
-                <label for="make">Make</label>
-                <input type="text" id="make" name="make" required placeholder="e.g. Ford, Toyota" />
-            </div>
+        <p>Confirmed Pickup Location (Address or Landmarks Description)</p>
+        <input type="text" name="pickup_location" required />
 
-            <div class="form-group">
-                <label for="model">Model</label>
-                <input type="text" id="model" name="model" required placeholder="e.g. F-150, Camry" />
-            </div>
+        <p>Dropoff Destination / Repair Shop Address</p>
+        <input type="text" name="dropoff_destination" required />
 
-            <div class="form-group">
-                <label for="color">Vehicle Color</label>
-                <input type="text" id="color" name="color" required />
-            </div>
+        <h2>2. Contact & Owner Information</h2>
 
-            <div class="form-group">
-                <label for="drive_type">Drive Type</label>
-                <select id="drive_type" name="drive_type" required>
-                    <option value="" disabled selected>Select Drive Type</option>
-                    <option value="FWD">Front-Wheel Drive (FWD)</option>
-                    <option value="RWD">Rear-Wheel Drive (RWD)</option>
-                    <option value="AWD_4WD">All-Wheel Drive (AWD / 4WD)</option>
-                    <option value="Motorcycle">Motorcycle</option>
-                </select>
-            </div>
+        <p>Full Name</p>
+        <input type="text" name="full_name" required />
 
-            <div class="form-group">
-                <label for="notes">Mechanical Notes & Key Location</label>
-                <textarea id="notes" name="notes" rows="4" placeholder="Describe the vehicle problem and where you will leave the keys..."></textarea>
-            </div>
+        <p>Best Contact Number</p>
+        <input type="tel" name="contact_number" required />
 
-            <button type="submit" class="btn-submit">Dispatch Operator With My Info</button>
-        </form>
-    </main>
+        <h2>3. Vehicle Attributes</h2>
 
-    <footer>
-        <p>© 2026 Romans Towing LLC. Certified Operators On Standby.</p>
-    </footer>
+        <p>Year</p>
+        <input type="number" name="vehicle_year" required />
 
-    <!-- Leaflet Javascript CDN Link Engine -->
-    <script src="https://unpkg.com"></script>
-    
+        <p>Make</p>
+        <input type="text" name="vehicle_make" required />
+
+        <p>Model</p>
+        <input type="text" name="vehicle_model" required />
+
+        <p>Vehicle Color</p>
+        <input type="text" name="vehicle_color" required />
+
+        <p>Drive Type</p>
+        <select name="drive_type" required>
+            <option value="">Select Drive Type</option>
+            <option value="FWD">Front-Wheel Drive (FWD)</option>
+            <option value="RWD">Rear-Wheel Drive (RWD)</option>
+            <option value="AWD_4WD">All-Wheel Drive (AWD / 4WD)</option>
+            <option value="Motorcycle">Motorcycle</option>
+        </select>
+
+        <p>Mechanical Notes & Key Location</p>
+        <textarea name="mechanical_notes" rows="4"></textarea>
+
+        <br><br>
+        <button type="submit">Dispatch Operator With My Info</button>
+    </form>
+
+    © 2026 Romans Towing LLC. Certified Operators On Standby.
+
+    <!-- Leaflet JS Component Library -->
+    <script src="https://unpkg.com" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script>
-        // CRITICAL FIX: Direct asset configurations targeting CDN images to prevent invisible map pins
+        // CRITICAL PIN FIX: Force asset configuration targeting unpkg assets explicitly to stop invisible pin faults
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
             iconRetinaUrl: 'https://unpkg.com',
@@ -175,46 +101,46 @@
             shadowUrl: 'https://unpkg.com'
         });
 
-        // Initialize Map targeting Arizona fallback region coords [32.2226, -110.9747] (Tucson area close to 520 area code)
+        // Initialize Map engine target focus centralized near your core (520) area code hub [Tucson / Marana region]
         var map = L.map('map').setView([32.2226, -110.9747], 11);
 
-        // Load Dark-Themed OpenStreetMap Map Tiles to fit your roadside scheme
-        L.tileLayer('https://{s}://{z}/{x}/{y}{r}.png', {
-            attribution: '© OpenStreetMap contributors © CARTO',
-            maxZoom: 20
+        // LIGHT MODE MAP LAYER: Loads traditional OpenStreetMap high-visibility road styling layout maps
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
         }).addTo(map);
 
         var pinMarker = null;
 
-        // Function to create or update pin placement values across form
+        // Core positioning engine pushing lat/lng data straight to tracking forms
         function placePin(lat, lng) {
             if (pinMarker) {
                 pinMarker.setLatLng([lat, lng]);
             } else {
                 pinMarker = L.marker([lat, lng], { draggable: true }).addTo(map);
                 
-                // If user drags the pin around manually, instantly capture updated endpoints
+                // Track dragging updates instantly
                 pinMarker.on('dragend', function(event) {
                     var newPos = event.target.getLatLng();
-                    document.getElementById('latitude').value = newPos.lat;
-                    document.getElementById('longitude').value = newPos.lng;
+                    document.getElementById('latitude').value = newPos.lat.toFixed(6);
+                    document.getElementById('longitude').value = newPos.lng.toFixed(6);
                 });
             }
             
-            // Sync values to form tracking
-            document.getElementById('latitude').value = lat;
-            document.getElementById('longitude').value = lng;
+            // Pop coordinate records directly into hidden form data nodes
+            document.getElementById('latitude').value = lat.toFixed(6);
+            document.getElementById('longitude').value = lng.toFixed(6);
         }
 
-        // Drop map pin where user manually clicks on the map framework
+        // Tap interface connector allowing manual pin drops over target map zones
         map.on('click', function(e) {
             placePin(e.latlng.lat, e.latlng.lng);
         });
 
-        // Browser GPS Engine Logic linked directly to the button selector element
+        // Hardware Browser Geolocation API interface activation rules
         document.getElementById('geolocate-btn').addEventListener('click', function() {
             if (!navigator.geolocation) {
-                alert("Geolocation tracking features are unsupported inside your browser framework.");
+                alert("Location lookup tracking features are unsupported inside this browser.");
                 return;
             }
 
@@ -222,19 +148,18 @@
                 var userLat = position.coords.latitude;
                 var userLng = position.coords.longitude;
 
-                // Zoom up close and smoothly pan directly to user breakdown center
                 map.setView([userLat, userLng], 16);
                 placePin(userLat, userLng);
                 
             }, function(error) {
-                alert("Unable to detect location. Please tap directly on the map structure to place a pin manually.");
+                alert("GPS lock timed out. Simply tap manually on your map breakdown target spot to set your pin marker position.");
             });
         });
 
-        // Run map container window bounds resize handler on structural creation
+        // Trigger container dimensions window recalculation routines to clean layout alignments 
         setTimeout(function() {
             map.invalidateSize();
-        }, 300);
+        }, 400);
     </script>
 </body>
 </html>
