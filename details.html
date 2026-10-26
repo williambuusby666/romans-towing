@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Intake Form | Romans Towing LLC</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Leaflet Engine for Free Open-Source Tracking Maps -->
-    <link rel="stylesheet" href="https://unpkg.com" />
-    <script src="https://unpkg.com"></script>
+    <!-- Leaflet Engine Assets -->
+    <link rel="stylesheet" href="https://unpkg.com" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
 
@@ -29,11 +29,11 @@
         <div class="container unique-form-container">
             <div class="form-header">
                 <h1>Service Intake Form</h1>
-                <p>Click the auto-detect button or drag the marker to drop a pin exactly where you are stranded.</p>
+                <p>Click the auto-detect button or drag the marker pin over your exact breakdown zone to alert our driver grid.</p>
             </div>
 
             <!-- Integrated Formspree Action Pipe -->
-            <form action="https://formspree.io/f/xzeeebvv" method="POST" class="master-intake-form">
+            <form action="https://formspree.io" method="POST" class="master-intake-form">
                 
                 <input type="hidden" name="_next" value="https://romansaztowing.com">
                 <input type="hidden" name="_subject" value="🚨 NEW Roadside Assistance GPS Dispatch Request">
@@ -46,8 +46,8 @@
                 <div class="form-block">
                     <h2>1. Drop Your Location Pin</h2>
                     
-                    <!-- Fixed Map Container Shell -->
-                    <div id="leafletMap" style="width: 100%; height: 350px; background-color: #16181d; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; position: relative; z-index: 1;"></div>
+                    <!-- Fixed Map Container Shell with Inline Dimensions -->
+                    <div id="leafletMap" style="width: 100%; min-height: 350px; background-color: #16181d; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; position: relative; z-index: 1;"></div>
 
                     <div style="background: rgba(57, 255, 20, 0.05); border: 1px dashed rgba(57, 255, 20, 0.3); padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
                         <button type="button" id="geoBtn" class="btn-primary" style="padding: 8px 16px; font-size: 14px; background-color: transparent; color: #39ff14; border: 1px solid #39ff14; box-shadow: none;">📍 Auto-Detect My Current GPS Location</button>
@@ -55,7 +55,7 @@
 
                     <div class="input-group">
                         <label>Confirmed Pickup Location (Address or Landmarks Description)</label>
-                        <input type="text" name="Pickup_Location" id="ui_location" placeholder="e.g., I-10 Westbound Mile Marker 236 or auto-filled address" required>
+                        <input type="text" name="Pickup_Location" id="ui_location" placeholder="e.g., I-10 Westbound Mile Marker 236 or exact address details" required>
                     </div>
                     <div class="input-group">
                         <label>Dropoff Destination / Repair Shop Address</label>
@@ -131,48 +131,53 @@
         </div>
     </footer>
 
-    <!-- Stable Open-Source Mapping Script -->
+    <!-- Stable Open-Source Mapping Script with Forced Size Recalibration -->
     <script>
         const geoBtn = document.getElementById('geoBtn');
         const latInput = document.getElementById('gps_lat');
         const lngInput = document.getElementById('gps_lng');
         const uiLocation = document.getElementById('ui_location');
 
-        // Base center point tracking initialized directly to Marana, AZ
         let startLat = 32.4363;
         let startLng = -111.2224;
 
-        // Initialize stable, standalone map canvas interface
+        // Initialize stable map canvas interface
         const map = L.map('leafletMap').setView([startLat, startLng], 13);
 
-        // Inject dark slate map tile skin layers seamlessly
+        // Inject high-contrast dark tile map layers cleanly from secure CDN path
         L.tileLayer('https://{s}://{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            maxZoom: 20
         }).addTo(map);
 
         // Drop initial high-visibility draggable pin marker
         let marker = L.marker([startLat, startLng], { draggable: true }).addTo(map);
 
-        // Helper tracker function to pass data straight into hidden input boxes
+        // CRITICAL BUG FIX: Forces Leaflet container layout boundaries to update instantly on DOM load to prevent any black rendering bugs
+        setTimeout(() => {
+            map.invalidateSize();
+            window.dispatchEvent(new Event('resize'));
+        }, 300);
+
         function updateCoordinates(lat, lng) {
             latInput.value = lat.toFixed(6);
             lngInput.value = lng.toFixed(6);
             uiLocation.value = `Stranded near GPS coordinates: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
         }
 
-        // Handle user manual pin drags over highway roads
+        // Handle user manual pin drags across layout grids
         marker.on('dragend', function (e) {
             const position = marker.getLatLng();
             updateCoordinates(position.lat, position.lng);
         });
 
-        // Handle direct tap/clicks across terrain zones
+        // Handle structural tap clicks across map areas
         map.on('click', function(e) {
             marker.setLatLng(e.latlng);
             updateCoordinates(e.latlng.lat, e.latlng.lng);
         });
 
-        // Geolocation browser tracker link engine block
+        // Geolocation tracking matrix engine block
         geoBtn.addEventListener('click', () => {
             if (navigator.geolocation) {
                 geoBtn.innerText = "Locating your vehicle GPS...";
@@ -180,20 +185,8 @@
                     const userLat = position.coords.latitude;
                     const userLng = position.coords.longitude;
 
-                    // Relocate map frame focus and pins dynamically
                     marker.setLatLng([userLat, userLng]);
                     map.setView([userLat, userLng], 16);
+                    map.invalidateSize(); // Triggers a safety layout rebuild on tracking lock
                     updateCoordinates(userLat, userLng);
 
-                    geoBtn.innerText = "📍 GPS Location Sync Success";
-                }, () => {
-                    geoBtn.innerText = "❌ Permission denied. Please drag pin manually.";
-                });
-            } else {
-                geoBtn.innerText = "❌ Browser geolocation unsupported.";
-            }
-        });
-    </script>
-
-</body>
-</html>
