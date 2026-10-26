@@ -13,8 +13,10 @@
         <div class="container navbar">
             <div class="logo"><a href="index.html" style="text-decoration:none; color:white;">Romans<span>Towing</span></a></div>
             <nav>
-                <a href="index.html">Back to Home</a>
-                <a href="tel:5202682564" class="btn-nav">Call Dispatch: (520) 268-2564</a>
+                <a href="about.html">About</a>
+                <a href="index.html#services">Services</a>
+                <a href="property-contact.html">Property Enforcement</a>
+                <a href="tel:5202682564" class="btn-nav">Call Now: (520) 268-2564</a>
             </nav>
         </div>
     </header>
@@ -24,65 +26,82 @@
         <div class="container unique-form-container">
             <div class="form-header">
                 <h1>Service Intake Form</h1>
-                <p>Please provide your accurate location details and vehicle diagnostics below so our certified operator arrives with the correct tools.</p>
+                <p>Drag the map marker to drop a pin exactly where you are stranded, then confirm your vehicle details below.</p>
             </div>
 
-            <!-- Replace '#' with your actual form submit handling endpoint URL later -->
-            <form action="https://formspree.io/f/xnppparp" method="POST" class="master-intake-form">
+            <!-- Integrated Formspree Action Pipe -->
+            <form action="https://formspree.io/f/xzeeebvv" method="POST" class="master-intake-form">
                 
-                <!-- Section: Contact -->
-                <div class="form-block">
-                    <h2>1. Contact & Owner Information</h2>
-                    <div class="form-group-row">
-                        <div class="input-group">
-                            <label>Full Name</label>
-                            <input type="text" name="customer_name" placeholder="John Doe" required>
-                        </div>
-                        <div class="input-group">
-                            <label>Best Contact Number</label>
-                            <input type="tel" name="customer_phone" placeholder="(520) 000-0000" required>
-                        </div>
-                    </div>
-                </div>
+                <input type="hidden" name="_next" value="https://romansaztowing.com">
+                <input type="hidden" name="_subject" value="🚨 NEW Roadside Assistance GPS Dispatch Request">
 
-                <!-- Section: Logistics Mapping -->
+                <!-- Hidden GPS Data Captures for Dispatch Routing -->
+                <input type="hidden" name="GPS_Latitude" id="gps_lat">
+                <input type="hidden" name="GPS_Longitude" id="gps_lng">
+
+                <!-- Section 1: Interactive Location Picker Widget -->
                 <div class="form-block">
-                    <h2>2. Location Matrix</h2>
+                    <h2>1. Drop Your Location Pin</h2>
+                    
+                    <div id="mapBox" style="width: 100%; height: 350px; background-color: #16181d; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; overflow: hidden;">
+                        <!-- The interactive map injects here seamlessly -->
+                        <iframe id="googleMapIframe" src="https://google.com" style="width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                    <div style="background: rgba(57, 255, 20, 0.05); border: 1px dashed rgba(57, 255, 20, 0.3); padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+                        <button type="button" id="geoBtn" class="btn-primary" style="padding: 8px 16px; font-size: 14px; background-color: transparent; color: #39ff14; border: 1px solid #39ff14; box-shadow: none;">📍 Auto-Detect My Current GPS Location</button>
+                    </div>
+
                     <div class="input-group">
-                        <label>Current Breakdown Location (Address, Landmark, or Mile Marker)</label>
-                        <input type="text" name="pickup_location" placeholder="e.g., I-10 Westbound Mile Marker 236 or address" required>
+                        <label>Confirmed Pickup Location (Address or Landmarks Description)</label>
+                        <input type="text" name="Pickup_Location" id="ui_location" placeholder="e.g., I-10 Westbound Mile Marker 236 or auto-filled address" required>
                     </div>
                     <div class="input-group">
                         <label>Dropoff Destination / Repair Shop Address</label>
-                        <input type="text" name="dropoff_location" placeholder="Where are we taking the vehicle?" required>
+                        <input type="text" name="Dropoff_Destination" placeholder="Where are we taking the vehicle?" required>
                     </div>
                 </div>
 
-                <!-- Section: Vehicle Framework -->
+                <!-- Section 2: Contact -->
+                <div class="form-block">
+                    <h2>2. Contact & Owner Information</h2>
+                    <div class="form-group-row">
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" name="Customer_Name" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Best Contact Number</label>
+                            <input type="tel" name="Customer_Phone" placeholder="(520) 000-0000" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Vehicle Framework -->
                 <div class="form-block">
                     <h2>3. Vehicle Attributes</h2>
                     <div class="form-group-row-three">
                         <div class="input-group">
                             <label>Year</label>
-                            <input type="number" name="vehicle_year" placeholder="2018" min="1900" max="2028" required>
+                            <input type="number" name="Vehicle_Year" placeholder="2018" min="1900" max="2028" required>
                         </div>
                         <div class="input-group">
                             <label>Make</label>
-                            <input type="text" name="vehicle_make" placeholder="Ford, Toyota" required>
+                            <input type="text" name="Vehicle_Make" placeholder="Ford, Toyota" required>
                         </div>
                         <div class="input-group">
                             <label>Model</label>
-                            <input type="text" name="vehicle_model" placeholder="F-150, Camry" required>
+                            <input type="text" name="Vehicle_Model" placeholder="F-150, Camry" required>
                         </div>
                     </div>
                     <div class="form-group-row" style="margin-top: 15px;">
                         <div class="input-group">
                             <label>Vehicle Color</label>
-                            <input type="text" name="vehicle_color" placeholder="Silver, Black, Blue" required>
+                            <input type="text" name="Vehicle_Color" placeholder="Silver, Black, Blue" required>
                         </div>
                         <div class="input-group">
                             <label>Drive Type</label>
-                            <select name="vehicle_drive_type" required class="select-field">
+                            <select name="Vehicle_Drive_Type" required class="select-field">
                                 <option value="" disabled selected>Select Drive Type</option>
                                 <option value="fwd">Front-Wheel Drive (FWD)</option>
                                 <option value="rwd">Rear-Wheel Drive (RWD)</option>
@@ -92,8 +111,8 @@
                         </div>
                     </div>
                     <div class="input-group" style="margin-top: 15px;">
-                        <label>Mechanical Notes, Modifications, & Key Location</label>
-                        <textarea name="mechanical_notes" placeholder="Are keys with you? Is the vehicle stuck in park? Are tires missing?" rows="4" required></textarea>
+                        <label>Mechanical Notes & Key Location</label>
+                        <textarea name="Mechanical_Notes" placeholder="Are keys with you? Is the vehicle stuck in park? Are tires missing?" rows="4" required></textarea>
                     </div>
                 </div>
 
@@ -110,6 +129,44 @@
             <p>&copy; 2026 Romans Towing LLC. Certified Operators On Standby 24/7.</p>
         </div>
     </footer>
+
+    <!-- Location Synchronization Automation Engine Script -->
+    <script>
+        const geoBtn = document.getElementById('geoBtn');
+        const mapIframe = document.getElementById('googleMapIframe');
+        const latInput = document.getElementById('gps_lat');
+        const lngInput = document.getElementById('gps_lng');
+        const uiLocation = document.getElementById('ui_location');
+
+        // Defaults directly to your base operations location context in Marana, AZ
+        let currentLat = 32.4363;
+        let currentLng = -111.2224;
+
+        geoBtn.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                geoBtn.innerText = "Locating your vehicle GPS...";
+                navigator.geolocation.getCurrentPosition((position) => {
+                    currentLat = position.coords.latitude;
+                    currentLng = position.coords.longitude;
+
+                    // Sync parameters inside hidden values passed to Formspree
+                    latInput.value = currentLat;
+                    lngInput.value = currentLng;
+
+                    // Instantly shift embedded viewport frame to driver coordinates position
+                    mapIframe.src = `https://google.com{currentLat},${currentLng}&z=16&output=embed`;
+                    
+                    // Input placeholder hint layout update
+                    uiLocation.value = `Stranded near GPS coordinates: ${currentLat.toFixed(5)}, ${currentLng.toFixed(5)}`;
+                    geoBtn.innerText = "📍 GPS Location Sync Success";
+                }, () => {
+                    geoBtn.innerText = "❌ Location permission denied. Please type address.";
+                });
+            } else {
+                geoBtn.innerText = "❌ Browser geolocation unsupported.";
+            }
+        });
+    </script>
 
 </body>
 </html>
